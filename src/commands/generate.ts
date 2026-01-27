@@ -4,7 +4,7 @@ import { HOME, copyFile, isDirectory, walkDir } from "../utils/files";
 import type { Platform } from "../utils/platform";
 
 export async function generate(projectRoot: string, platform: Platform) {
-  const sources = await parseSources(projectRoot);
+  const sources = await parseSources(projectRoot, platform);
   const platformDir = join(projectRoot, platform);
 
   let copied = 0;

@@ -6,7 +6,7 @@ import { sync } from "./commands/sync";
 const USAGE = `Usage: bun run <command>
 
 Commands:
-  generate  Copy files listed in sources.txt from $HOME into the platform directory
+  generate  Copy files listed in sources.<platform>.txt from $HOME into the platform directory
   sync      Sync stored dotfiles back to $HOME`;
 
 async function main() {
