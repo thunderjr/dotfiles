@@ -1,0 +1,30 @@
+alias ls="eza --icons=always"
+
+eval "$(zoxide init zsh)"
+alias cd=z
+
+pokemon-colorscripts -r 1
+
+# Maokai CD
+mcd() {
+    local selected=$(maokai | gum choose)
+    if [ -n "$selected" ]; then
+        local branch=$(echo "$selected" | sed 's/.* - \([^(]*\) .*/\1/' | xargs)
+        local path=$(maokai path "$branch")
+        if [ -n "$path" ]; then
+            cd "$path"
+        fi
+    fi
+}
+
+awsenv() {
+    eval "$(aws configure export-credentials --profile $1 --format env)"
+}
+
+alias finops="$HOME/projects/finops-desktop/build/bin/finops-desktop.app/Contents/MacOS/finops-desktop &"
+alias nfdesc="cat ~/Documents/NF_desc.md | pbcopy"
+alias commit="claude -p \"/commit\""
+
+# Work
+alias login_meris="/Users/thunderjr/work/coodex/meris_login.sh"
+alias awslogs="/Users/thunderjr/work/coodex/logs.sh"

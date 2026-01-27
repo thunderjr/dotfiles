@@ -1,0 +1,17 @@
+# Dotfiles sources
+# List files or folders relative to $HOME, one per line.
+# Folders (trailing /) are copied recursively.
+# Lines starting with # are comments.
+#
+# Examples:
+#   .zshrc
+#   .config/git/config
+#   .config/starship.toml
+#   .config/sketchybar/
+
+.config/zed/settings.json
+.config/ghostty/config
+.config/yabai/yabairc
+.config/starship.toml
+.config/skhd/skhdrc
+.config/sketchybar/

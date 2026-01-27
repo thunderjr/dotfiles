@@ -1,0 +1,65 @@
+#!/usr/bin/env sh
+# yabairc - Yabai configuration file
+# Place this file at ~/.config/yabai/yabairc and make it executable
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# Global settings
+yabai -m config mouse_follows_focus          on
+yabai -m config focus_follows_mouse          on
+yabai -m config window_origin_display        default
+yabai -m config window_placement             first_child
+yabai -m config window_topmost               off
+yabai -m config window_shadow                on
+yabai -m config window_opacity               off
+yabai -m config window_opacity_duration      0.0
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.90
+yabai -m config window_border                off
+yabai -m config window_border_width          6
+yabai -m config active_window_border_color   0xff775759
+yabai -m config normal_window_border_color   0xff555555
+yabai -m config insert_feedback_color        0xffd75f5f
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 off
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            swap
+
+# General space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding                  0
+yabai -m config bottom_padding               0
+yabai -m config left_padding                 0
+yabai -m config right_padding                0
+yabai -m config window_gap                   1
+
+# Mission Control workaround - disable animations for faster workspace switching
+yabai -m config external_bar                 off
+yabai -m config --display 0 external_bar all:33:0
+yabai -m config --display 1 external_bar all:33:0
+
+# Rules for specific applications
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Raycast$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^qemu-system-aarch64" manage=off
+yabai -m rule --add app="^Pritunl Client$" manage=off
+yabai -m rule --add app="^Firefox$" manage=off
+
+# Workspace assignment
+yabai -m rule --add app="^Zen" space=2
+yabai -m rule --add app="^MongoDB Compass" space=5
+yabai -m rule --add app="^Insomnia" space=6
+yabai -m rule --add app="^Microsoft Teams" space=7
+yabai -m rule --add app="^Spotify" space=8
+
+# Fix: ghostty tabs
+yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
+
+echo "yabai configuration loaded.."

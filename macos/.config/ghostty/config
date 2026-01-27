@@ -1,0 +1,26 @@
+theme                      = Banana Blueberry
+# theme                      = Duskfox
+# theme                      = Aura
+# theme                      = Argonaut
+# theme                      = Everblush
+
+font-family                = Fira Code Light SemiBold
+shell-integration-features = no-cursor
+cursor-style               = block
+font-size                  = 17
+
+macos-titlebar-proxy-icon = hidden
+window-inherit-font-size  = true
+gtk-single-instance       = true
+macos-titlebar-style      = tabs
+window-decoration         = true
+#window-padding-x          = 15
+
+background                  = #000
+background-blur		 = true
+#background-opacity          = 0.7
+background-opacity          = 0.85
+
+keybind = shift+enter=text:\n
+keybind = performable:cmd+c=copy_to_clipboard
+keybind = cmd+shift+r=equalize_splits

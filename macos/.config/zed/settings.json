@@ -1,0 +1,136 @@
+{
+  "minimum_contrast_for_highlights": 50.0,
+  "on_last_window_closed": "quit_app",
+  "when_closing_with_no_tabs": "keep_window_open",
+  "confirm_quit": false,
+  "context_servers": {},
+  "agent_servers": {
+    "codex": {
+      "default_mode": "auto",
+    },
+    "claude": {
+      "default_mode": "acceptEdits",
+    },
+  },
+  "icon_theme": "Base Charmed Icons",
+  "edit_predictions": {
+    "mode": "eager",
+    "disabled_globs": ["**/.env*", "thunderjr/cron/**", "**/Claude/**"],
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "base_keymap": "VSCode",
+  "relative_line_numbers": "enabled",
+  // "ui_font_family": "Monocraft",
+  "ui_font_family": ".ZedMono",
+  "buffer_font_family": "Fira Code Light",
+  "theme": "Kanagawa Dragon - No Italics",
+  "experimental.theme_overrides": {
+    "background.appearance": "blurred",
+    "surface.background": "#00000060",
+    "background": "#00000085",
+    "element.background": "#00000066",
+    "status_bar.background": "#000000DD",
+    "title_bar.background": "#000000DD",
+    "toolbar.background": "#00000066",
+    "tab_bar.background": "#00000066",
+    "tab.inactive_background": "#44444466",
+    "tab.active_background": "#000000",
+    "panel.background": "#000000",
+    "scrollbar.track.background": "#111",
+    "editor.background": "#00000055",
+    "editor.gutter.background": "#00000055",
+    "editor.active_line.background": "#00000017",
+    "text.muted": "#FFFFFF",
+    "text": "#FFFFFF",
+    "terminal.background": "#000000",
+    // Git colors
+    "modified": "#cb69d6",
+    "renamed": "#feae67",
+    "created": "#73e4a8",
+  },
+  "languages": {
+    "Plain Text": {
+      "show_edit_predictions": false,
+    },
+    "Shell Script": {
+      "show_edit_predictions": false,
+    },
+    "JavaScript": {
+      "formatter": [
+        {
+          "code_action": "source.fixAll.eslint",
+        },
+        {
+          "external": {
+            "command": "prettier",
+            "arguments": ["--stdin-filepath", "{buffer_path}"],
+          },
+        },
+      ],
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
+    },
+  },
+  "language_models": {},
+  "features": {
+    "edit_prediction_provider": "zed",
+  },
+  "agent": {
+    "favorite_models": [
+      {
+        "provider": "zed.dev",
+        "model": "claude-sonnet-4-5",
+      },
+      {
+        "provider": "zed.dev",
+        "model": "claude-haiku-4-5",
+      },
+      {
+        "provider": "zed.dev",
+        "model": "gemini-3-pro-preview",
+      },
+    ],
+    "default_profile": "write",
+    "always_allow_tool_actions": true,
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4",
+    },
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-5",
+    },
+    "inline_alternatives": [
+      {
+        "provider": "zed.dev",
+        "model": "claude-3-5-sonnet-latest",
+      },
+    ],
+    "button": false,
+    "dock": "right",
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false,
+  },
+  // "collaboration_panel": {
+  //   "button": false
+  // },
+  "notification_panel": {
+    "button": false,
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+}
