@@ -1,0 +1,137 @@
+# aerospace.toml - AeroSpace configuration file
+# Place this file at ~/.aerospace.toml
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+    '~/.config/aerospace/on-workspace-change.sh',
+]
+
+on-focus-changed = [
+  'exec-and-forget sketchybar --trigger aerospace_focus_change',
+]
+
+# Start AeroSpace at login
+start-at-login = true
+
+# Normalizations
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# Mouse follows focus
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+after-startup-command = [
+    # JankyBorders
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 blacklist="iPhone Mirroring,Wispr Flow"'
+]
+
+
+# Gaps (adjust to your preference)
+[gaps]
+inner.horizontal = 4
+inner.vertical = 6
+
+outer.top = 6
+outer.bottom = 6
+outer.left = 4
+outer.right = 4
+
+# Main mode bindings
+[mode.main.binding]
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
+# Switch to workspace (alt + 1-9)
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+
+# Move window to workspace AND follow it (alt + shift + 1-9)
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
+alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
+
+# Cycle through workspaces (comma and period)
+alt-period = 'workspace next'
+alt-comma = 'workspace prev'
+
+# Window navigation - HJKL vim-style
+alt-h = 'focus left --ignore-floating'
+alt-j = 'focus down --ignore-floating'
+alt-k = 'focus up --ignore-floating'
+alt-l = 'focus right --ignore-floating'
+
+# Move window in direction
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# Toggle fullscreen (zoom)
+alt-f = 'fullscreen'
+
+# Toggle floating
+alt-shift-space = 'layout floating tiling'
+
+# Layout management - using join-with instead of split
+cmd-alt-s = 'join-with right'  # Join current window with the one to the right
+cmd-alt-r = 'layout tiles horizontal vertical'  # Rotate between layouts
+
+# Balance layout (equalize sizes)
+cmd-alt-b = 'balance-sizes'
+
+# Monitor management
+cmd-alt-m = 'focus-monitor next'
+cmd-alt-shift-m = ['move-node-to-monitor next', 'focus-monitor next']
+
+# Launch terminal
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+
+# Resize mode
+alt-r = 'mode resize'
+
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+esc = 'mode main'
+enter = 'mode main'
+
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.electron.wispr-flow'
+if.window-title-regex-substring = 'Status'
+run = 'layout floating'
+
+
+# Fix for Ghostty tabs being treated as separate windows
+#[[on-window-detected]]
+#if.app-id = 'com.mitchellh.ghostty'
+#run = ['layout floating']
+
+# When a Ghostty window is detected, flatten/re-tile the workspace
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['layout floating']
+check-further-callbacks = true
+
+# Also add this callback to re-balance after any Ghostty window
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['exec-and-forget aerospace flatten-workspace-tree']

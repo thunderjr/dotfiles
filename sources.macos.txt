@@ -15,3 +15,5 @@
 .config/starship.toml
 .config/skhd/skhdrc
 .config/sketchybar/
+.config/aerospace/
+.aerospace.toml
