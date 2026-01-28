@@ -96,7 +96,7 @@ cmd-alt-m = 'focus-monitor next'
 cmd-alt-shift-m = ['move-node-to-monitor next', 'focus-monitor next']
 
 # Launch terminal
-alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app; sleep 0.1; aerospace layout tiling'
 
 # Resize mode
 alt-r = 'mode resize'
