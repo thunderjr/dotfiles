@@ -30,10 +30,13 @@ after-startup-command = [
 inner.horizontal = 4
 inner.vertical = 6
 
-outer.top = 6
 outer.bottom = 6
 outer.left = 4
 outer.right = 4
+outer.top = [
+    { monitor."^built-in retina display$" = 6 }, # Laptop screen (notch handles spacing)
+    39, # 33 + 6                                 # External monitors (space for sketchybar)
+]
 
 # Main mode bindings
 [mode.main.binding]
@@ -63,43 +66,60 @@ alt-shift-8 = ['move-node-to-workspace 8', 'workspace 8']
 alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
 
 # Cycle through workspaces (comma and period)
-alt-period = 'workspace next'
-alt-comma = 'workspace prev'
+alt-period = 'workspace next --wrap-around'
+alt-comma = 'workspace prev --wrap-around'
 
 # Window navigation - HJKL vim-style
-alt-h = 'focus left --ignore-floating'
-alt-j = 'focus down --ignore-floating'
-alt-k = 'focus up --ignore-floating'
-alt-l = 'focus right --ignore-floating'
+# alt-h = 'focus left --ignore-floating'
+# alt-j = 'focus down --ignore-floating'
+# alt-k = 'focus up --ignore-floating'
+# alt-l = 'focus right --ignore-floating'
+
+# wrap-around: focus wraps to the other side
+alt-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
+alt-j = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
+alt-k = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
+alt-l = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
 
 # Move window in direction
-alt-shift-h = 'move left'
-alt-shift-j = 'move down'
-alt-shift-k = 'move up'
-alt-shift-l = 'move right'
+alt-shift-h = 'move left --boundaries all-monitors-outer-frame'
+alt-shift-j = 'move down --boundaries all-monitors-outer-frame'
+alt-shift-k = 'move up --boundaries all-monitors-outer-frame'
+alt-shift-l = 'move right --boundaries all-monitors-outer-frame'
 
 # Toggle fullscreen (zoom)
 alt-f = 'fullscreen'
-
 # Toggle floating
 alt-shift-space = 'layout floating tiling'
-
 # Layout management - using join-with instead of split
 cmd-alt-s = 'join-with right'  # Join current window with the one to the right
 cmd-alt-r = 'layout tiles horizontal vertical'  # Rotate between layouts
-
 # Balance layout (equalize sizes)
 cmd-alt-b = 'balance-sizes'
+# Launch terminal
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app; sleep 0.1; aerospace layout tiling'
+# Resize mode
+alt-r = 'mode resize'
 
-# Monitor management
+
+## MONITOR ##
 cmd-alt-m = 'focus-monitor next'
 cmd-alt-shift-m = ['move-node-to-monitor next', 'focus-monitor next']
 
-# Launch terminal
-alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app; sleep 0.1; aerospace layout tiling'
+[workspace-to-monitor-force-assignment]
+# Workspaces 1-5 on your main/external monitor
+1 = 'main'
+2 = 'main'
+3 = 'main'
+4 = 'main'
+5 = 'main'
+6 = 'main'
+7 = 'main'
+# Workspaces 6-9 on your built-in laptop screen
+8 = 'built-in'
+9 = 'built-in'
 
-# Resize mode
-alt-r = 'mode resize'
+## END MONITOR ##
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -118,6 +138,27 @@ run = 'layout floating'
 if.app-id = 'com.electron.wispr-flow'
 if.window-title-regex-substring = 'Status'
 run = 'layout floating'
+
+# Window rules - move apps to specific workspaces
+[[on-window-detected]]
+if.app-name-regex-substring = '^Zen'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^MongoDB Compass'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Insomnia'
+run = ['move-node-to-workspace 6']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Microsoft Teams'
+run = ['move-node-to-workspace 7']
+
+[[on-window-detected]]
+if.app-name-regex-substring = '^Spotify'
+run = ['move-node-to-workspace 8']
 
 
 # Fix for Ghostty tabs being treated as separate windows
