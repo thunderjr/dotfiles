@@ -12,19 +12,19 @@
       "default_mode": "acceptEdits",
     },
   },
-  "icon_theme": "Base Charmed Icons",
+  "icon_theme": "FantastIcons Icon Theme",
   "edit_predictions": {
     "mode": "eager",
     "disabled_globs": ["**/.env*", "thunderjr/cron/**", "**/Claude/**"],
   },
   "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
+  "ui_font_size": 17,
+  "buffer_font_size": 17,
   "base_keymap": "VSCode",
   "relative_line_numbers": "enabled",
   // "ui_font_family": "Monocraft",
   "ui_font_family": ".ZedMono",
-  "buffer_font_family": "Fira Code Light",
+  "buffer_font_family": ".ZedMono",
   "theme": "Kanagawa Dragon - No Italics",
   "experimental.theme_overrides": {
     "background.appearance": "blurred",
@@ -104,7 +104,7 @@
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4",
+      "model": "claude-opus-4-5",
     },
     "default_model": {
       "provider": "zed.dev",
@@ -127,6 +127,9 @@
   //   "button": false
   // },
   "notification_panel": {
+    "button": false,
+  },
+  "debugger": {
     "button": false,
   },
   "telemetry": {
